@@ -2,6 +2,7 @@ package com.example.blog.board;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +28,10 @@ public class BoardService {
     public BoardResponse.DetailDTO 게시글상세보기(int id) {
         Board board = boardRepository.findById(id);
         return new BoardResponse.DetailDTO(board);
+    }
+
+    @Transactional // 커밋용
+    public void 게시글쓰기(BoardRequest.SaveDTO saveDTO) {
+        boardRepository.save(saveDTO.getTitle(), saveDTO.getContent());
     }
 }

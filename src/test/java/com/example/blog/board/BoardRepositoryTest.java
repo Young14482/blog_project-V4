@@ -15,6 +15,22 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
 
     @Test
+    public void save_test() {
+        // given
+        String title = "제목6";
+        String content = "내용6";
+
+        // when
+        boardRepository.save(title, content);
+
+        // then(eye)
+        Board board = boardRepository.findById(6);
+        System.out.println(board.getId());
+        System.out.println(board.getTitle());
+        System.out.println(board.getContent());
+    } // rollback >> @Transactional 효과 >> 메소드가 끝나면 rollback
+
+    @Test
     public void findAll_test(){
         // test 3단계
         // given >> 테스트할 메소드의 파라미터를 넣음 >> 없으면 생략

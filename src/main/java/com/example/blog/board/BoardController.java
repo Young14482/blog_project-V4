@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -46,6 +47,18 @@ public class BoardController {
 		return "qnaDetail";
 	}
     */
+
+    @PostMapping("/board/save")
+    public String save(BoardRequest.SaveDTO saveDTO){
+        System.out.println(saveDTO); // @Data는 내부에 toString을 재정의해서 구현해준다.
+        boardService.게시글쓰기(saveDTO);
+        return "redirect:/"; // 주소를 반환하기
+    } 
+
+    @GetMapping("/save-form")
+    public String saveForm(){
+        return "save-form";
+    }
 
     /**
      * unique의 유무 차이로 주소작성법이 달라짐 >> 주소 설계 구칙

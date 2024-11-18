@@ -25,4 +25,11 @@ public class BoardRepository {
         q.setParameter(1, id); // 물음표 완성하기 >> (물음표 순서, 물음표에 바인딩할 변수값)
         return (Board) q.getSingleResult();
     }
+
+    public void save(String title, String content) {
+        Query q = em.createNativeQuery("insert into board_tb(title, content, created_at) values(?, ?, now())", Board.class);
+        q.setParameter(1, title);
+        q.setParameter(2, content);
+        q.executeUpdate();
+    }
 }
