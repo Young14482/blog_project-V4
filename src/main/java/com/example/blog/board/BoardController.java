@@ -48,6 +48,12 @@ public class BoardController {
 	}
     */
 
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable int id) {
+        boardService.게시글삭제(id);
+        return"redirect:/";
+    }
+
     @PostMapping("/board/save")
     public String save(BoardRequest.SaveDTO saveDTO){
         System.out.println(saveDTO); // @Data는 내부에 toString을 재정의해서 구현해준다.

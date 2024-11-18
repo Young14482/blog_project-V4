@@ -15,6 +15,19 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
 
     @Test
+    public void delete_test(){
+        //given
+        int id = 1;
+
+        //when
+        boardRepository.delete(id);
+
+        //then(eye)
+        List<Board> boardList = boardRepository.findAll();
+        System.out.println("사이즈? " + boardList.size());
+    }
+
+    @Test
     public void save_test() {
         // given
         String title = "제목6";

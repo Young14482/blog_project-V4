@@ -30,6 +30,12 @@ public class BoardRepository {
         Query q = em.createNativeQuery("insert into board_tb(title, content, created_at) values(?, ?, now())", Board.class);
         q.setParameter(1, title);
         q.setParameter(2, content);
+        q.executeUpdate(); // insert, update, delete는 실행시켜줘야한다.
+    }
+
+    public void delete(int id) {
+        Query q = em.createNativeQuery("delete from board_tb where id = ?");
+        q.setParameter(1,id);
         q.executeUpdate();
     }
 }

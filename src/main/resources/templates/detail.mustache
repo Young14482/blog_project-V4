@@ -1,5 +1,8 @@
 {{> layout/header}}
     <section>
+        <form action="/board/{{model.id}}/delete" method="post">
+            <button type="submit">삭제</button>
+        </form>
         <div>
             번호: {{model.id}} <br>
             제목: {{model.title}} <br>
