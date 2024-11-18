@@ -1,10 +1,10 @@
 {{> layout/header}}
 <section>
     <form action="/board/{{model.id}}/update" method="post" enctype="application/x-www-form-urlencoded">
-        <input type="text" name="id" placeholder={{model.id}} readonly><br>
-        <input type="text" name="title" placeholder={{model.title}}><br>
-        <input type="text" name="content" placeholder={{model.content}}><br>
-        <input type="text" name="createdAt" placeholder={{model.createdAt}} readonly><br>
+        <input type="text" value={{model.id}} readonly><br>
+        <input type="text" name="title" value={{model.title}}><br>
+        <input type="text" name="content" value={{model.content}}><br>
+        <input type="text" value={{model.createdAt}} readonly><br>
         <button type="submit">수정하기</button>
     </form>
 </section>

@@ -44,4 +44,9 @@ public class BoardService {
     public void 게시글수정하기(int id, String title, String content) {
         boardRepository.update(id, title, content);
     }
+
+    public BoardResponse.UpdateFormDTO 게시글수정화면보기(int id) {
+        Board board = boardRepository.findById(id);
+        return new BoardResponse.UpdateFormDTO(board);
+    }
 }

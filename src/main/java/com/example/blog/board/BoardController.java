@@ -47,7 +47,8 @@ public class BoardController {
     */
     @GetMapping("/board/{id}/update")
     public String updateForm(Model model, @PathVariable int id) {
-        BoardResponse.DetailDTO target = boardService.게시글상세보기(id);
+        // UpdateFormDTO == DetailDTO 이지만 유지보수를 생각해 나누는게 좋음
+        BoardResponse.UpdateFormDTO target = boardService.게시글수정화면보기(id); // 아래의 게시글상세보기()와 같은 동작이지만 나누는게 유지보수가 좋음
         model.addAttribute("model", target);
         return "update-form";
     }
@@ -73,7 +74,7 @@ public class BoardController {
         return "redirect:/"; // 주소를 반환하기
     } 
 
-    @GetMapping("/save-form")
+    @GetMapping("/board/save-form")
     public String saveForm(){
         return "save-form";
     }
