@@ -1,5 +1,6 @@
 package com.example.blog.board;
 
+import com.example.blog._core.util.MyDate;
 import lombok.Data;
 
 import java.text.SimpleDateFormat;
@@ -18,12 +19,7 @@ public class BoardResponse {
             this.id = board.getId();
             this.title = board.getTitle();
             this.content = board.getContent();
-
-            // TODO: 2024.11.18.형태로 변경
-            Date date = new Date();
-            date.setTime(board.getCreatedAt().getTime());
-
-            this.createdAt = new SimpleDateFormat("yyyy.MM.dd").format(date);
+            this.createdAt = MyDate.formatDate(board.getCreatedAt());
         }
     }
 
