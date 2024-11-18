@@ -15,6 +15,22 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
 
     @Test
+    public void update_test() {
+        // given
+        int id = 1;
+        String title = "바뀐 제목123";
+        String content = "바뀐 내용123123";
+
+        // when
+        boardRepository.update(id, title, content);
+
+        //then(eye)
+        Board board = boardRepository.findById(id);
+        System.out.println(board.getTitle());
+        System.out.println(board.getContent());
+    }
+
+    @Test
     public void delete_test(){
         //given
         int id = 1;

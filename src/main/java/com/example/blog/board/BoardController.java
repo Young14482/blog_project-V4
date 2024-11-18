@@ -3,9 +3,7 @@ package com.example.blog.board;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,6 +45,20 @@ public class BoardController {
 		return "qnaDetail";
 	}
     */
+    @GetMapping("/board/{id}/update")
+    public String updateForm(Model model, @PathVariable int id) {
+        BoardResponse.DetailDTO target = boardService.게시글상세보기(id);
+        model.addAttribute("model", target);
+        return "update-form";
+    }
+
+    @PostMapping("/board/{id}/update")
+    public String update(@PathVariable int id, BoardRequest.UpdateDTO dto) {
+        String title = dto.getTitle();
+        String content = dto.getContent();
+        boardService.게시글수정하기(id,title, content);
+        return "redirect:/board/"+ id;
+    }
 
     @PostMapping("/board/{id}/delete")
     public String delete(@PathVariable int id) {

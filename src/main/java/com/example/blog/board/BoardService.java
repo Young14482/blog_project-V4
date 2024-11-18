@@ -39,4 +39,9 @@ public class BoardService {
     public void 게시글삭제(int id) {
         boardRepository.delete(id);
     }
+
+    @Transactional
+    public void 게시글수정하기(int id, String title, String content) {
+        boardRepository.update(id, title, content);
+    }
 }

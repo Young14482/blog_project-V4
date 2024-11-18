@@ -38,4 +38,12 @@ public class BoardRepository {
         q.setParameter(1,id);
         q.executeUpdate();
     }
+
+    public void update(int id, String title, String content) {
+        Query q = em.createNativeQuery("update board_tb set title = ?, content = ? where id = ?");
+        q.setParameter(1,title);
+        q.setParameter(2,content);
+        q.setParameter(3,id);
+        q.executeUpdate();
+    }
 }

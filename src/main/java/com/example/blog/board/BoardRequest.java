@@ -10,4 +10,9 @@ public class BoardRequest {
        private String content;
     }
 
+    @Data
+    public static class UpdateDTO extends Object{
+        private String title;
+        private String content;
+    }
 }
