@@ -47,4 +47,5 @@ public class BoardResponse {
             this.content = board.getContent();
             this.createdAt = MyDate.formatDate(board.getCreatedAt());
         }
+    }
 }

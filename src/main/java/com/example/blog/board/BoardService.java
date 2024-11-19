@@ -41,8 +41,9 @@ public class BoardService {
     }
 
     @Transactional
-    public void 게시글수정하기(int id, String title, String content) {
-        boardRepository.update(id, title, content);
+    // 내부 필드 값을 꺼내서 쓰는 이유? >> repository의 쿼리문은 여러군데에서 쓰일 수 있음 >> 의존적이면 좋지않음
+    public void 게시글수정하기(int id, BoardRequest.UpdateDTO updateDTO) {
+        boardRepository.update(id, updateDTO.getTitle(), updateDTO.getContent());
     }
 
     public BoardResponse.UpdateFormDTO 게시글수정화면보기(int id) {

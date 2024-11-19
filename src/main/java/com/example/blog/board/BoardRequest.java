@@ -5,13 +5,13 @@ import lombok.Data;
 public class BoardRequest {
 
     @Data // getter, setter, toString 생성
-    public static class SaveDTO extends Object{
+    public static class SaveDTO{
        private String title;
        private String content;
     }
 
     @Data
-    public static class UpdateDTO extends Object{
+    public static class UpdateDTO{
         private String title;
         private String content;
     }
