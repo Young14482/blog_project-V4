@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
@@ -15,31 +16,25 @@ public class BoardRepository {
 
 
     public List<Board> findAll() {
-        Query q = em.createNativeQuery("select * from board_tb order by id desc", Board.class);
-        return q.getResultList();
+        // 테이블 이름이 아니라 클래스명(Board)과 변수(b)를 사용
+        return em.createQuery("SELECT b FROM Board b ORDER BY b.id DESC", Board.class).getResultList();
     }
 
-    public Board findById(int id) {
-        Query q = em.createNativeQuery("select * from board_tb where id = ?", Board.class);
-        q.setParameter(1, id); // 물음표 완성하기 >> (물음표 순서, 물음표에 바인딩할 변수값)
-        return (Board) q.getSingleResult();
+    public Optional<Board> findById(int id) {
+        return Optional.ofNullable(em.find(Board.class, id));
     }
 
     public void save(Board board) {
+        // 실행 전 board 비영속
        em.persist(board); // 객체를 만들어서 던지면 insert
+        // 실행 후 board 영속 >> 비어있던 필드들이 채워진 상태
     }
 
     public void delete(int id) {
-        Query q = em.createNativeQuery("delete from board_tb where id = ?");
-        q.setParameter(1,id);
-        q.executeUpdate();
+        // createQuery에서 ? 대신 ":파라미터명" 으로 지정후 setParameter로 값을 넣어 줄 수 있다.
+       em.createQuery("DELETE FROM Board b WHERE b.id = :id")
+               .setParameter("id", id)
+               .executeUpdate();
     }
-
-    public void update(int id, String title, String content) {
-        Query q = em.createNativeQuery("update board_tb set title = ?, content = ? where id = ?");
-        q.setParameter(1,title);
-        q.setParameter(2,content);
-        q.setParameter(3,id);
-        q.executeUpdate();
-    }
+    // update는 이제 안써도됨 >> 상태 변경을 감지함
 }

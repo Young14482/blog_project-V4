@@ -1,17 +1,8 @@
 {{> layout/header}}
 <section>
-    <!--1. 폼 태그로 post로 보낼 내용 감싸기-->
-    <!-- 3. 폼을 보낼 주소와 보낼 방식 작성 -->
-    <!--  4. HTML 1.0 에서는 get과 post 밖에 없어서 주소를 통해 동작을 전달함
-     ex) /board/add >> insert 요청, /board/delete >> delete 요청 등등  -->
-
-   <!-- title=제목6&content=내용6 >> application/x-www-form-urlencoded
-    key값은 input태그의 name
-    value값은 input태그에 사용자가 입력하는값-->
     <form action="/board/save" method="post" enctype="application/x-www-form-urlencoded">
         <input type="text" name="title" placeholder="제목"><br>
         <input type="text" name="content" placeholder="내용"><br>
-        <!-- 2. 제출 버튼 생성 >> type을 submit으로  -->
         <button type="submit">글쓰기</button>
     </form>
 </section>
