@@ -6,8 +6,13 @@ public class BoardRequest {
 
     @Data // getter, setter, toString 생성
     public static class SaveDTO{
-       private String title;
-       private String content;
+        private String title;
+        private String content;
+
+        public Board toEntity(){
+            Board board = new Board(null, title,content,null);
+            return board;
+        }
     }
 
     @Data

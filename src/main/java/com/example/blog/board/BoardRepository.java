@@ -11,10 +11,9 @@ import java.util.List;
 @Repository
 public class BoardRepository {
 
-    // JPA는 EntityManager를 통해 DB에 접근한다. (자바에서 DBConnection)
     private final EntityManager em;
 
-    // db를 조회하고 내용을 알아서 매핑해줌
+
     public List<Board> findAll() {
         Query q = em.createNativeQuery("select * from board_tb order by id desc", Board.class);
         return q.getResultList();
@@ -26,11 +25,8 @@ public class BoardRepository {
         return (Board) q.getSingleResult();
     }
 
-    public void save(String title, String content) {
-        Query q = em.createNativeQuery("insert into board_tb(title, content, created_at) values(?, ?, now())", Board.class);
-        q.setParameter(1, title);
-        q.setParameter(2, content);
-        q.executeUpdate(); // insert, update, delete는 실행시켜줘야한다.
+    public void save(Board board) {
+       em.persist(board); // 객체를 만들어서 던지면 insert
     }
 
     public void delete(int id) {
