@@ -14,7 +14,6 @@ public class BoardRepository {
 
     private final EntityManager em;
 
-
     public List<Board> findAll() {
         // 테이블 이름이 아니라 클래스명(Board)과 변수(b)를 사용
         return em.createQuery("SELECT b FROM Board b ORDER BY b.id DESC", Board.class).getResultList();

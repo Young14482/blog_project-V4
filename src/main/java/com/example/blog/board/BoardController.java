@@ -1,8 +1,12 @@
 package com.example.blog.board;
 
+import com.example.blog._core.error.ex.Exception400;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +25,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}/update")
-    public String updateForm(Model model, @PathVariable int id) {
+    public String updateForm(Model model, @PathVariable Integer id) {
         // UpdateFormDTO == DetailDTO 이지만 유지보수를 생각해 나누는게 좋음
         BoardResponse.UpdateFormDTO target = boardService.게시글수정화면보기(id);
         model.addAttribute("model", target);
@@ -40,8 +44,9 @@ public class BoardController {
         return"redirect:/";
     }
 
-    @PostMapping("/board/save")
-    public String save(BoardRequest.SaveDTO saveDTO){
+    @PostMapping("/board/save") // @Valid >> 바로 옆에 있는 변수에 값을 넣어 줌 주의해야함
+    public String save(@Valid BoardRequest.SaveDTO saveDTO, Errors errors) {
+
         boardService.게시글쓰기(saveDTO);
         return "redirect:/";
     }
@@ -52,7 +57,7 @@ public class BoardController {
     }
 
     @GetMapping("/board/{id}")
-    public String detail(@PathVariable("id") int id, Model model) {
+    public String detail(@PathVariable("id") Integer id, Model model) {
         BoardResponse.DetailDTO boardDetail = boardService.게시글상세보기(id);
         model.addAttribute("model", boardDetail);
         return "detail";
