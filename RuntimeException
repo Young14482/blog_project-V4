@@ -1,0 +1,59 @@
+[33mcommit f8552713c77c0ec974d65817e16970c4ed9dd0de[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: young <young14482@gmail.com>
+Date:   Thu Nov 21 11:41:58 2024 +0900
+
+    예외 ì 처리 완료
+
+[33mcommit b548755eab6221f1bce3a2042df308e4ed62938e[m
+Author: young <young14482@gmail.com>
+Date:   Wed Nov 20 17:28:25 2024 +0900
+
+    jjpa 구현 완료
+
+[33mcommit 2482c78dc63b1053d2e9f06ca398fba4203babba[m
+Author: young <young14482@gmail.com>
+Date:   Wed Nov 20 15:43:53 2024 +0900
+
+    글쓰기 jpa 변환 완료
+
+[33mcommit 7a42bc2b8995d95420f4e60607cb9a9627d07857[m
+Author: young <young14482@gmail.com>
+Date:   Tue Nov 19 09:48:35 2024 +0900
+
+    5-2. 수정í하기 완료
+
+[33mcommit d9b3d64633914b47e5e01d6a9d6d368b5cbabd5d[m
+Author: young <young14482@gmail.com>
+Date:   Mon Nov 18 17:49:47 2024 +0900
+
+    5-1.ì1. 수정하기 수정중
+
+[33mcommit d5a55a826505772ba0a6d5233aa57a5a3095b424[m
+Author: young <young14482@gmail.com>
+Date:   Mon Nov 18 16:48:45 2024 +0900
+
+    5.수정기능 구현
+
+[33mcommit e49cf150169a6ecc41d52ebec3d860c2cd6f10a4[m
+Author: young <young14482@gmail.com>
+Date:   Mon Nov 18 15:51:36 2024 +0900
+
+    4. 삭제 기능 구현
+
+[33mcommit 36a08ab3c0c47cc191f2c96e10d11fcd762f3001[m
+Author: young <young14482@gmail.com>
+Date:   Mon Nov 18 12:54:57 2024 +0900
+
+    3. 글쓰기 구현
+
+[33mcommit 186fdba31f3358bd3d66a6e294832e8e6be2e986[m
+Author: young <young14482@gmail.com>
+Date:   Mon Nov 18 12:11:27 2024 +0900
+
+    2. 날짜 포맷 추가
+
+[33mcommit dbcbc0908cc3bec3461ed3b6458c11b687a4f488[m
+Author: young <young14482@gmail.com>
+Date:   Mon Nov 18 11:14:19 2024 +0900
+
+    기본 생성
