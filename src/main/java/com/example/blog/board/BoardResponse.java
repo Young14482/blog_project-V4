@@ -33,19 +33,4 @@ public class BoardResponse {
             this.title = board.getTitle();
         }
     }
-
-    @Data
-    public static class UpdateFormDTO {
-        private int id;
-        private String title;
-        private String content;
-        private String createdAt;
-
-        public UpdateFormDTO(Board board) {
-            this.id = board.getId();
-            this.title = board.getTitle();
-            this.content = board.getContent();
-            this.createdAt = MyDate.formatDate(board.getCreatedAt());
-        }
-    }
 }
