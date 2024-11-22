@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin()
 @RequiredArgsConstructor
 @RestController
 public class BoardController {
