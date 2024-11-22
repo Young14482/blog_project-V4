@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>blog</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="/list.html">홈</a>
+            </li>
+            <li>
+                <a href="/save-form.html">글쓰기</a>
+            </li>
+        </ul>
+    </nav>
+
+<hr>
+    <section>
+        <form action="http://localhost:8080/board/1/delete" method="post">
+            <button type="submit">삭제</button>
+        </form>
+        <form action="/update-form.html" method="GET">
+            <button type="submit">수정</button>
+        </form>
+        <div>
+            번호: 1 <br>
+            제목: 제목1 <br>
+            내용: 내용1 <br>
+            작성일: 2024.11.22 <br>
+        </div>
+    </section>
+</body>
+</html>

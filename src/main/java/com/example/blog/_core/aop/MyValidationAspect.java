@@ -10,9 +10,6 @@ import org.springframework.validation.Errors;
 @Component
 @Aspect
 public class MyValidationAspect {
-
-    // 포인트 컷
-
     // 행위
     @Before("@annotation(org.springframework.web.bind.annotation.PostMapping)") // 포인트컷 자리 >> 어노테이션 임포트 문구
     // 모든 정보가 담기는 JoinPoint
@@ -31,5 +28,4 @@ public class MyValidationAspect {
             }
         }
     }
-
 }
