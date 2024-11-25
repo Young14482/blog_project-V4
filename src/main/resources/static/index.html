@@ -27,29 +27,48 @@
 </section>
 
 <script>
+    //state
+    let state = {};
+
     // init
     let root = document.querySelector("#root");
     renderList();
 
     // list 디자인
-    function renderList() {
+    async function renderList() {
         clear();
-        let dom = `
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="list-box">
 
-                </tbody>
-            </table>
+        let boards = await sendList2();
+
+        let dom = `
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="list-box">
+                        ${boards.map(b => {
+            let temp = renderListItem2(b).join('');
+            return temp;
+        })}
+                    </tbody>
+                </table>
             `;
         root.innerHTML = dom;
-        sendList();
+    }
+
+    function renderListItem2(board) {
+        let dom = `
+                <tr>
+                    <td>${board.id}</td>
+                    <td>${board.title}</td>
+                    <td><a href="javascript:void(0);" onclick="renderDetail(${board.id})">상세보기</a></td>
+                </tr>
+            `;
+        return dom;
     }
 
     function renderListItem(board) {
@@ -91,59 +110,75 @@
         root.innerHTML = dom;
     }
 
-    function sendSave() {
+    async function sendSave() {
         // 1. 사용자 입력값 가져오기
+        let board = {
+            title: document.querySelector("#title").value,
+            content: document.querySelector("#content").value
+        };
 
         // 2. JSON 변환
+        let requestBody = JSON.stringify(board);
 
         // 3. API 요청
+        let response = await fetch("http://localhost:8080/api/board", {
+            method: "POST",
+            body: requestBody,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        });
+        let responseBody = await response.json();
 
         // 4. 응답 처리
-
+        renderList();
     }
-
-    function sendDelete() {
-        // 1. 사용자 입력값 가져오기
-
-        // 2. JSON 변환
-
-        // 3. API 요청
-
-        // 4. 응답 처리
-
-    }
-
-    function sendUpdate() {
-        // 1. 사용자 입력값 가져오기
-
-        // 2. JSON 변환
-
-        // 3. API 요청
-
-        // 4. 응답 처리
-
-    }
-
 
     // updateForm 디자인
     function renderUpdateForm() {
+        console.log("state", state);
         clear();
         let dom = `
                 <form>
-                    <input type="text" value=1 readonly><br>
-                    <input type="text" id="title" value="제목1"><br>
-                    <input type="text" id="content" value="내용1"><br>
-                    <input type="text" value="2024.11.22" readonly><br>
-                    <button onclick="sendUpdate()">수정하기</button>
+                    <input type="text" value="${state.id}" readonly><br>
+                    <input type="text" id="title" value="${state.title}"><br>
+                    <input type="text" id="content" value="${state.content}"><br>
+                    <input type="text" value="${state.createdAt}" readonly><br>
+                    <button type="button" onclick="sendUpdate(${state.id})">수정하기</button>
                 </form>
             `;
         root.innerHTML = dom;
+    }
+
+    async function sendUpdate(id) {
+        // 1. 사용자 입력값 가져오기
+        let board = {
+            title: document.querySelector("#title").value,
+            content: document.querySelector("#content").value
+        }
+
+        // 2. JSON 변환
+        let requestBody = JSON.stringify(board);
+
+        // 3. API 요청
+        let response = await fetch(`http://localhost:8080/api/board/${id}`, {
+            method: "PUT",
+            body: requestBody,
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
+        });
+        let responseBody = await response.json();
+        // 4. 응답 처리
+        renderDetail(id);
+
     }
 
     // detail 디자인
     async function renderDetail(id) {
         clear();
         let board = await sendDetail(id);
+        state = board;
         let dom = `
                 <form>
                     <button type="button" onclick="sendDelete(${board.id} )">삭제</button>
@@ -159,6 +194,17 @@
                 </div>
             `;
         root.innerHTML = dom;
+    }
+
+    async function sendDelete(id) {
+        // 1. API 요청
+        let response = await fetch(`http://localhost:8080/api/board/${id}`, {
+            method: "DELETE"
+        });
+        let responseBody = await response.json();
+        console.log(responseBody);
+        // 2. 응답 처리
+        renderList();
     }
 
     async function sendDetail(id) {
